@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="FattaangOnlineShopping.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <%--<asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>--%>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%--<div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>--%>
+        <table style="align-content: center; width: 900px;">
+            <%--width:900px--%>
+            <%--Header--%>
+            <tr>
+                <td>
+                    <table style="align-content: center; border-bottom-style: ridge; border-width: medium; border-color: #808080; width: 900px;">
+                        <%--width:900px--%>
+                        <tr>
+
+                            <%--logo--%>
+                            <td style="text-align: center">
+                                <asp:Image ID="Image1" runat="server" Width="200px" Height="67px" ImageUrl="../Images/fattaang_logo.png" />
+                                &nbsp;
+                                
+                            </td>
+
+                            <%-- website Name and tagline--%>
+                            <td>
+                                <asp:LinkButton ID="lblLogo" runat="server" Text="Fattaang" Font-Names="Eras Demi ITC" Font-Size="20pt" ForeColor="#6600CC">
+                                </asp:LinkButton>
+                                <br />
+                                For those who love Jeans...!!!
+                            </td>
+
+
+                            <%--image--%>
+                            <td style="text-align: center">
+                                <asp:Image ID="Image2" runat="server" Width="300px" Height="81px" ImageUrl="../Images/Smile.jpg" />
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <%--Menu--%>
+            <tr>
+                <td>
+                    <table style="/*text-align: center;*/ border: thin ridge #808080; width: 900px">
+                        <tr>
+                            <td class="style2">
+                                <a href="AddEditCategory.aspx">Category</a>
+                                &nbsp; <a href="AddNewProducts.aspx">Products</a>
+                                &nbsp; <a href="#">CustomerOrders</a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <%--Content--%>
+            <tr>
+                <td>
+                    <table style="text-align: center; border: 1px ridge #000000; width: 900px">
+                        <tr>
+                            <td class="style2" style="vertical-align: top"><%--html> valign="top"--%>
+                                <asp:Panel ID="pnlCategories" runat="server">
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                    </asp:ContentPlaceHolder>
+                                </asp:Panel>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <%--Footer--%>
+            <tr>
+                <td colspan="2" style="text-align: center">&nbsp;&copy;fattaang.com
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+</body>
+</html>

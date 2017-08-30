@@ -13,5 +13,10 @@ namespace FattaangOnlineShopping.Admin
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

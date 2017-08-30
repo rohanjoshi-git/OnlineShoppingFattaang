@@ -11,7 +11,7 @@
             <td style="width:50%; padding-left:100px; text-align:left">
                 Category Name: 
             </td>
-            <td style="width: 50px; text-align: left">
+            <td style="width: 50%; text-align: left">
                 <asp:TextBox ID="txtCategoryName" runat="server" Width="212px"></asp:TextBox>
 
             </td>

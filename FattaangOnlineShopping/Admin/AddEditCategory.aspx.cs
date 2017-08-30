@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusinessObjects;
+using BusinessLogicLayer;
 
 namespace FattaangOnlineShopping.Admin
 {
@@ -16,7 +18,8 @@ namespace FattaangOnlineShopping.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            ShoppingCart cart = new ShoppingCart();
+            cart.CategoryName = txtCategoryName.Text;
         }
     }
 }

@@ -18,8 +18,16 @@ namespace FattaangOnlineShopping.Admin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            ShoppingCart cart = new ShoppingCart();
-            cart.CategoryName = txtCategoryName.Text;
+            //ShoppingCart cart = new ShoppingCart() { CategoryName = txtCategoryName.Text };
+
+            ShoppingCart objCart = new ShoppingCart();
+            BLL objBLL = new BLL();
+
+            objCart.CategoryName = txtCategoryName.Text;
+
+            objBLL.AddNewCategory(objCart);
+            txtCategoryName.Text = string.Empty;
+            Response.Redirect("~/Admin/AddNewProducts.aspx");
         }
     }
 }

@@ -13,7 +13,6 @@
             </td>
             <td style="width: 50%; text-align: left">
                 <asp:TextBox ID="txtCategoryName" runat="server" Width="212px"></asp:TextBox>
-
             </td>
         </tr>
 

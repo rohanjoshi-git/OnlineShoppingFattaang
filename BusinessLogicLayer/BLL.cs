@@ -29,6 +29,16 @@ namespace BusinessLogicLayer
             DataTable dt = objDAL.ExecuteDTByProcedure("SP_AddNewCategory", parameters);
 
         }
+
+        public DataTable GetCategories()
+        {
+
+            DAL objDAL = new DAL();
+
+            SqlParameter[] parameters = new SqlParameter[0];
+            DataTable dt = objDAL.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
+            return dt;
+        }
     }
     
 

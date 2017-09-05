@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using BusinessLogicLayer;
 using System.Data;
+using System.IO; // for Path.GetExtension (get file extension)
 
 namespace FattaangOnlineShopping.Admin
 {
@@ -27,7 +28,7 @@ namespace FattaangOnlineShopping.Admin
             DataTable dt = objBLL.GetCategories();
             if (dt.Rows.Count > 0)
             {
-                ddlCategory.DataValueField = "CategoryId";
+                ddlCategory.DataValueField = "CategoryID";
                 ddlCategory.DataTextField = "CategoryName";
                 ddlCategory.DataSource = dt;
                 ddlCategory.DataBind();
@@ -46,9 +47,10 @@ namespace FattaangOnlineShopping.Admin
                 objShoppingCart.ProductName = txtProductName.Text;
                 objShoppingCart.ProductImage = "~/ProductImages/"+uploadProductPhoto.FileName;
                 objShoppingCart.ProductPrice = txtProductPrice.Text;
+                objShoppingCart.ProductDescription = txtProductDescription.Text;
                 objShoppingCart.CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
 
-                //objBLL.AddNewProduct();
+                objBLL.AddNewProduct(objShoppingCart);
                 //Alert.Show("Reord Saved Successfully");
                 ClearText();
 
@@ -66,9 +68,34 @@ namespace FattaangOnlineShopping.Admin
         {
             if (uploadProductPhoto.PostedFile != null)
             {
-                string fileName = uploadProductPhoto.PostedFile.FileName.ToString();
+                //string fileName = uploadProductPhoto.PostedFile.FileName.ToString();
+                string fileName = uploadProductPhoto.FileName.ToString();
+                string fileExt = Path.GetExtension(uploadProductPhoto.FileName);
 
+                // check file name length
+                if(fileName.Length > 96)
+                {
+                    //Alert.Show("Image name should not exceed 96 characters !");
+                    //archive.devnewz.com/devnewz-3-20061129JavaScriptAlertShowmessagefromASPNETCodebehind.html 
+                }
 
+                // check file type
+                else if (fileExt != ".jpeg" && fileExt != ".jpg" && fileExt != ".png" &&  fileExt != ".bmp")
+                {
+                    //Alert.Show("Only jpeg, jpg, png, bmp images are allowed!");
+                }
+
+                // check file size
+                else if (uploadProductPhoto.PostedFile.ContentLength > 4000000)
+                {
+                    //Alert.Show("Image size should not be greater than 4MB!");
+                }
+
+                //save image into images folder
+                else
+                {
+                    uploadProductPhoto.SaveAs(Server.MapPath("~/ProductImages/" + fileName));
+                } 
             }
         }
     }

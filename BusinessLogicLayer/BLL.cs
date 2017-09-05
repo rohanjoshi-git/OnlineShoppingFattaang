@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using BusinessObjects;
-using System.Data;
+using System.Data; // SqlDbType
 
 namespace BusinessLogicLayer
 {
@@ -24,10 +24,23 @@ namespace BusinessLogicLayer
             DAL objDAL = new DAL();
             SqlParameter[] parameters = new SqlParameter[1];
 
-            string CategoryName = objShoppingCart.CategoryName;
-            parameters[0] = objDAL.AddParameter("@CategoryName", CategoryName, System.Data.SqlDbType.VarChar, 200);
+            //string CategoryName = objShoppingCart.CategoryName;
+            parameters[0] = objDAL.AddParameter("@CategoryName", objShoppingCart.CategoryName, SqlDbType.VarChar, 200);
             DataTable dt = objDAL.ExecuteDTByProcedure("SP_AddNewCategory", parameters);
 
+        }
+
+        public void AddNewProduct(ShoppingCart objShoppingCart)
+        {
+            DAL objDAL = new DAL();
+            SqlParameter[] parameters = new SqlParameter[5];
+            parameters[0] = objDAL.AddParameter("@ProductName", objShoppingCart.ProductName, SqlDbType.VarChar, 300);
+            parameters[1] = objDAL.AddParameter("@ProductPrice", objShoppingCart.ProductPrice, SqlDbType.Int, 100);
+            parameters[2] = objDAL.AddParameter("@ProductImage", objShoppingCart.ProductImage, SqlDbType.VarChar, 500);
+            parameters[3] = objDAL.AddParameter("@ProductDescription", objShoppingCart.ProductDescription, SqlDbType.VarChar, 1000);
+            parameters[4] = objDAL.AddParameter("@CategoryID", objShoppingCart.CategoryID, SqlDbType.Int, 100);
+
+            DataTable dt = objDAL.ExecuteDTByProcedure("SP_AddNewProduct", parameters);
         }
 
         public DataTable GetCategories()

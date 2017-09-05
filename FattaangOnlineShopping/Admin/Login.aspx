@@ -35,7 +35,7 @@
                     Password: 
                 </td>
                 <td style="text-align:left; width:50%;">
-                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox TextMode="Password" ID="txtPassword" runat="server"></asp:TextBox>
                 </td>
                 
             </tr>

@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="Admin\AddEditCategory.aspx" />
     <Content Include="Admin\AddNewProducts.aspx" />
+    <Content Include="Home.aspx" />
     <Content Include="Images\acc2.jpg" />
     <Content Include="Images\CAccessories.jpg" />
     <Content Include="Images\Denim_collection.jpg" />
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

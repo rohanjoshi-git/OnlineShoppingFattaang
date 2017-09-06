@@ -18,5 +18,10 @@ namespace FattaangOnlineShopping
         {
 
         }
+
+        protected void btnFattaang_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

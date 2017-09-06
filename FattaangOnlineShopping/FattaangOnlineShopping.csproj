@@ -77,8 +77,9 @@
     <Content Include="Images\Fattaang_junta.jpg" />
     <Content Include="Images\fattaang_logo.png" />
     <Content Include="Images\laptops1 .jpg" />
+    <Content Include="Images\shopping-cart-icon.png" />
     <Content Include="Images\Smile.jpg" />
-    <Content Include="Images\Untitled-1.jpg" />
+    <Content Include="Images\banner.jpg" />
     <Content Include="packages.config" />
     <Content Include="Admin\AdminMaster.Master" />
     <None Include="Web.Debug.config">

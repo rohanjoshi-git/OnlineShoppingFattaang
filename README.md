@@ -4,4 +4,4 @@ e-commerce website
 Add Category
 Add Product
 Home Page UI
-Stock quantity 
+Stock quantity

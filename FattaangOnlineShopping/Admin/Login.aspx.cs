@@ -13,7 +13,7 @@ namespace FattaangOnlineShopping.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtLoginId.Focus(); // to place cursor in LoginId TextBox on page load
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

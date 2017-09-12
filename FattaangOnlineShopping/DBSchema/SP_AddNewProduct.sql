@@ -4,7 +4,8 @@ create PROCEDURE SP_AddNewProduct
 @ProductPrice int,
 @ProductImage varchar(500),
 @ProductDescription varchar(1000),
-@CategoryID int
+@CategoryID int,
+@ProductQuantity int
 )
 AS
 	BEGIN
@@ -17,7 +18,8 @@ AS
 			@ProductDescription,
 			@ProductPrice,
 			@ProductImage,
-			@CategoryID
+			@CategoryID,
+			@ProductQuantity
 			)
 		END TRY
 

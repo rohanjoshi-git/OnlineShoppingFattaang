@@ -23,5 +23,15 @@ namespace FattaangOnlineShopping
         {
 
         }
+
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnCategory_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

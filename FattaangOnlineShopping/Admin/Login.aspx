@@ -45,7 +45,7 @@
                     &nbsp
                 </td>
                 <td style="text-align:left; width:50%;">
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click"/>
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" OnClientClick="return HelloName()"/>
                 </td>
             </tr>
             <tr>
@@ -59,5 +59,16 @@
 
     </div>
     </form>
+
+    <script>
+
+        function HelloName() {
+            var name = document.getElementById('txtLoginId').value;
+            alert("Hello " + name);
+            //return false;
+        }
+        
+    </script>
+
 </body>
 </html>

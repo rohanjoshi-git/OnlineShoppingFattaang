@@ -18,7 +18,23 @@ namespace FattaangOnlineShopping.Admin
             if (!IsPostBack)
             {
                 GetCategories();
+
+                AddSubmitEvent();
+
+                if(Request.QueryString["alert"] == "success")
+                {
+                    Response.Write("<script>alert('Record saved successfully');</script>");
+                }
             }
+        }
+
+        private void AddSubmitEvent()
+        {
+            UpdatePanel updatePanel = Page.Master.FindControl("AdminUpdatePanel") as UpdatePanel;
+            UpdatePanelControlTrigger trigger = new PostBackTrigger();
+            trigger.ControlID = btnSubmit.UniqueID;
+
+            updatePanel.Triggers.Add(trigger);
         }
 
         private void GetCategories()
@@ -49,14 +65,22 @@ namespace FattaangOnlineShopping.Admin
                 objShoppingCart.ProductPrice = txtProductPrice.Text;
                 objShoppingCart.ProductDescription = txtProductDescription.Text;
                 objShoppingCart.CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+                objShoppingCart.TotalProducts = Convert.ToInt32(txtProductQuantity.Text);
 
                 objBLL.AddNewProduct(objShoppingCart);
                 //Alert.Show("Reord Saved Successfully");
+                
+                // Clear all fields
                 ClearText();
+                Response.Redirect("~/Admin/AddNewProducts.aspx?alert=success"); // redirected to AddNewProducts and Page_Load will then be called
 
             }
-            
 
+            else
+            {
+                Response.Write("<script>alert('Please upload photo');</script>");
+            }
+           
         }
 
         private void ClearText()

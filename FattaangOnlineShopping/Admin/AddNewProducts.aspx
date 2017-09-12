@@ -96,6 +96,24 @@
         </tr>
 
         <tr>
+            <td style="width:50%; padding-left:100px; text-align:left">
+                Product Quantity: 
+            </td>
+            <td style="width: 50%; text-align: left">
+                <asp:TextBox ID="txtProductQuantity" runat="server" Width="212px"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:50%; /*padding-left:100px;*/ text-align:left">
+                &nbsp;
+            </td>
+            <td style="width: 50%; text-align: left">
+                 &nbsp;
+            </td>
+        </tr>
+
+        <tr>
             <td style="width:50%;  text-align:right">
                 &nbsp;
             </td>

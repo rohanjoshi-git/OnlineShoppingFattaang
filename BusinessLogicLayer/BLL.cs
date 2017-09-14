@@ -53,6 +53,17 @@ namespace BusinessLogicLayer
             DataTable dt = objDAL.ExecuteDTByProcedure("SP_GetAllCategories", parameters);
             return dt;
         }
+
+
+        public DataTable GetAllProducts(ShoppingCart objShoppingCart)
+        {
+            DAL objDAL = new DAL();
+
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = objDAL.AddParameter("@CategoryID", objShoppingCart.CategoryID, SqlDbType.Int, 100);
+            DataTable dt = objDAL.ExecuteDTByProcedure("SP_GetAllProducts", parameters);
+            return dt;
+        }
     }
     
 

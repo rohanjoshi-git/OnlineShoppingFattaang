@@ -13,3 +13,10 @@ CREATE TABLE Category
 CategoryID INT PRIMARY KEY IDENTITY (1,1), 
 CategoryName VARCHAR(500)
 )
+
+CREATE TABLE CustomerProducts
+(
+CategoryID INT, 
+ProductID INT,
+TotalProduct INT
+)

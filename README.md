@@ -12,4 +12,4 @@ Homepage to display all products
 Display products by Category
 AdminPanel in AdminMaster.Master
 Functionality for Stock quantity
-Dialogue boxes and alerts
+Dialogue boxes and alerts 

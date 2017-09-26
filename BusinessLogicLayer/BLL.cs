@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DataAccessLayer;
 using BusinessObjects;
 using System.Data; // SqlDbType
+using System.Web.Configuration;
+using System.Configuration;
 
 namespace BusinessLogicLayer
 {
@@ -62,6 +64,25 @@ namespace BusinessLogicLayer
             SqlParameter[] parameters = new SqlParameter[1];
             parameters[0] = objDAL.AddParameter("@CategoryID", objShoppingCart.CategoryID, SqlDbType.Int, 100);
             DataTable dt = objDAL.ExecuteDTByProcedure("SP_GetAllProducts", parameters);
+            return dt;
+        }
+
+        public DataTable GetProductData(string query)
+        {
+            //DAL objDAL = new DAL(); move code to DAL
+            DataTable dt = new DataTable();
+            //dt = objDAL.GetData(query);
+
+            string ConnectionString = WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; // another approch
+
+            SqlConnection con = new SqlConnection(ConnectionString);
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            da.Fill(dt);
+
+            con.Close();
             return dt;
         }
     }

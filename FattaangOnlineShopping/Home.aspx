@@ -81,8 +81,8 @@
                                     </td>
 
                                     <td style="text-align: left">
-                                        <asp:LinkButton ID="btnFattaang" runat="server" Font-Underline="false" Font-Size="20pt"
-                                            ForeColor="Red" OnClick="btnFattaang_Click">0
+                                        <asp:LinkButton ID="btnCartItems" runat="server" Font-Underline="false" Font-Size="20pt"
+                                            ForeColor="Red" OnClick="btnCartItems_Click">0
                                         </asp:LinkButton>
                                     </td>
                                 </tr>
@@ -152,7 +152,8 @@
                                                             <tr>
                                                                 <td>Price:
                                                                     <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
-                                                                    <asp:Image ID="imgBullet" runat="server" Visible="false" ImageUrl="#" />
+                                                                    <asp:Image ID="imgTick" runat="server" Visible="false" ImageUrl="~/Images/green_tick_in_circle.jpg" Width="25px" />
+
 
                                                                     <%--Available Stock--%>
                                                                     Stock: &nbsp;
@@ -385,16 +386,16 @@
 
                                                 <tr>
                                                     <td>
-                                                        <asp:Button ID="btnPlaceOrder" runat="server" Text="Place Order" style="font-weight:700; width:90px;"
-                                                            OnClick="btnPlaceOrder_Click"/>                           
+                                                        <asp:Button ID="btnPlaceOrder" runat="server" Text="Place Order" Style="font-weight: 700; width: 90px;"
+                                                            OnClick="btnPlaceOrder_Click" />
                                                     </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td>
                                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtCustomerEmailID"
-                                                            ErrorMessage="Please Enter valid Email Id" ForeColor="Red" 
-                                                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>     
+                                                            ErrorMessage="Please Enter valid Email Id" ForeColor="Red"
+                                                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                                     </td>
                                                 </tr>
 

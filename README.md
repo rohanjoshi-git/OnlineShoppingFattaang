@@ -1,7 +1,6 @@
 # OnlineShoppingFattaang
 E-commerce website </br> </br>
-
-Functionality - </br>
+Functionalities - </br>
 Admin login page </br>
 Admin master page for adding admin module and child pages</br>
 Add New Category and Add New Products page</br>

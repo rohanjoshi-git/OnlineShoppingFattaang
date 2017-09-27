@@ -193,7 +193,20 @@ namespace FattaangOnlineShopping
 
         protected void btnRemoveFromCart_Click(object sender, EventArgs e)
         {
+            string ProductId = Convert.ToInt16(((Button)sender).CommandArgument).ToString();
 
+            if (Session["MyCart"] != null)
+            {
+                DataTable dt = (DataTable)Session["MyCart"];
+
+                DataRow drr = dt.Select("ProductId = " + ProductId + "").FirstOrDefault();
+
+                if (drr != null) dt.Rows.Remove(drr);
+
+                Session["MyCart"] = dt;
+            }
+
+            GetMyCart();
         }
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
@@ -263,7 +276,7 @@ namespace FattaangOnlineShopping
             {
                 pnlEmptyCart.Visible = true;
                 pnlMyCart.Visible = false;
-                pnlCheckOut.Visible = true;
+                pnlCheckOut.Visible = false;
                 pnlCategories.Visible = false;
                 pnlProducts.Visible = false;
                 pnlOrderPlacedSuccessfully.Visible = false;

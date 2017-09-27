@@ -121,10 +121,10 @@
                 <td>
                     <table class="style1" style="text-align: center">
 
-                        <%--Products and Categories Panels--%>
+                        <%--Products, My Cart, Categories, CheckOut Panels Panels--%>
                         <tr>
 
-                            <%--Products and My Cart Panels--%>
+                            <%--Products and My Cart Panels (right side)--%>
                             <td class="style2" style="vertical-align: top">
                                 <%--Products Panel--%>
                                 <asp:Panel ID="pnlProducts" runat="server" ScrollBars="Auto" Height="500" BorderColor="Black"
@@ -228,10 +228,10 @@
                                                                         &nbsp;
                                                                     x
                                                                     &nbsp;
-                                                                    <asp:TextBox ID="txtProductQuantity" runat="server" Width="10px" Height="10px"
-                                                                        MaxLength="1" OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true"
-                                                                        Text='<%# Eval("ProductQuantity") %>'></asp:TextBox>
-                                                                        <%--AutoPostBack="true"--%>
+                                                                    <asp:TextBox ID="txtProductQuantity" runat="server" Width="15px" Height="10px"
+                                                                         OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true"
+                                                                        Text='<%# Eval("ProductQuantity") %>'></asp:TextBox>  <%--MaxLength="1"--%>
+                                                                        <%--AutoPostBack="true" to post back immediately instad of cashed event--%>
                                                                         <asp:HiddenField ID="hfProductID" runat="server" Value='<%# Eval("ProductId") %>' />
 
                                                                     </td>
@@ -268,7 +268,7 @@
                                 </asp:Panel>
                             </td>
 
-                            <%--Categories and CheckOut Panels--%>
+                            <%--Categories and CheckOut Panels (left side)--%>
                             <td class="style3" style="vertical-align: top; text-align: center">
                                 <%--Categories Panel--%>
                                 <asp:Panel ID="pnlCategories" runat="server" ScrollBars="Auto" Height="500" BorderColor="Black"
@@ -422,7 +422,7 @@
                                         <br />
                                         <br />
                                         <br />
-                                        <asp:Image ID="imgEmptyCart" runat="server" ImageUrl="Images/EmptyCart1.jpeg" Width="500px" />
+                                        <asp:Image ID="imgEmptyCart" runat="server" ImageUrl="~/Images/EmptyCart1.jpg" Width="500px" />
                                         <br />
                                         <br />
                                         <br />

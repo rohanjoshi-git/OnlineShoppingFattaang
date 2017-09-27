@@ -61,12 +61,12 @@ namespace FattaangOnlineShopping
             pnlOrderPlacedSuccessfully.Visible = false;
 
             GetProducts(0);
-            //HighlightCartProducts();
+            HighlightCartProducts();
         }
 
         protected void btnCartItems_Click(object sender, EventArgs e)
         {
-            //GetMyCart();  // to be added
+            GetMyCart();
             lblCategoryName.Text = "Products in your Shopping Cart";
             lblProducts.Text = "Customer Details";
         }
@@ -99,7 +99,7 @@ namespace FattaangOnlineShopping
                     dr["Description"] = Convert.ToString(dtProduts.Rows[0]["Description"]);
                     dr["Price"] = Convert.ToString(dtProduts.Rows[0]["Price"]);
                     dr["ImageUrl"] = Convert.ToString(dtProduts.Rows[0]["ImageUrl"]);
-                    dr["ProductQuanity"] = ProductQuantity;
+                    dr["ProductQuantity"] = ProductQuantity;
                     dr["AvailableStock"] = lblAvailableStock.Text;
 
                     dt.Rows.Add(dr);
@@ -119,7 +119,7 @@ namespace FattaangOnlineShopping
                 dt.Columns.Add("Description", typeof(string));
                 dt.Columns.Add("Price", typeof(string));
                 dt.Columns.Add("ImageUrl", typeof(string));
-                dt.Columns.Add("ProductQuanity", typeof(string));
+                dt.Columns.Add("ProductQuantity", typeof(string));
                 dt.Columns.Add("AvailableStock", typeof(string));
 
                 DataRow dr = dt.NewRow();
@@ -128,7 +128,7 @@ namespace FattaangOnlineShopping
                 dr["Description"] = Convert.ToString(dtProduts.Rows[0]["Description"]);
                 dr["Price"] = Convert.ToString(dtProduts.Rows[0]["Price"]);
                 dr["ImageUrl"] = Convert.ToString(dtProduts.Rows[0]["ImageUrl"]);
-                dr["ProductQuanity"] = ProductQuantity;
+                dr["ProductQuantity"] = ProductQuantity;
                 dr["AvailableStock"] = lblAvailableStock.Text;
 
                 dt.Rows.Add(dr);
@@ -152,6 +152,42 @@ namespace FattaangOnlineShopping
 
         protected void txtProductQuantity_TextChanged(object sender, EventArgs e)
         {
+            TextBox txtQuantity = (sender as TextBox);  // "sender as TextBox"
+
+            DataListItem currentItem = (sender as TextBox).NamingContainer as DataListItem;
+            HiddenField ProductId = currentItem.FindControl("hfProductId") as HiddenField;
+            Label lblAvailableStock = currentItem.FindControl("lblAvailableStock") as Label;
+
+            if (txtQuantity.Text == string.Empty || txtQuantity.Text == "0" || txtQuantity.Text == "1")
+            {
+                txtQuantity.Text = "1";
+            }
+            else
+            {
+                if (Session["MyCart"] != null)
+                {
+                    // check whether Stock is available
+                    if (Convert.ToInt32(txtQuantity.Text) <= Convert.ToInt32(lblAvailableStock.Text))
+                    {
+                        DataTable dt = (DataTable)Session["MyCart"];
+
+                        DataRow[] rows = dt.Select("ProductId = '" + ProductId.Value + "'");
+
+                        int index = dt.Rows.IndexOf(rows[0]);
+
+                        dt.Rows[index]["ProductQuantity"] = txtQuantity.Text;
+
+                        Session["MyCart"] = dt;
+                    }
+                    else
+                    {
+                        lblAvailableStockAlert.Text = "Alert: Product buyout should not be more than available stock !";
+                        txtQuantity.Text = "1";
+                    }
+                }
+            }
+
+            UpdateTotalBill();
 
         }
 
@@ -190,6 +226,75 @@ namespace FattaangOnlineShopping
                     }
                 }
             }
+        }
+
+        private void GetMyCart()
+        {
+            DataTable dtProducts;
+            
+            if (Session["MyCart"] != null) // Convert seession object to datatable
+            {
+                dtProducts = (DataTable)Session["MyCart"];
+            }
+            else // create new DataTable - simply assign memory to dtProducts
+            {
+                dtProducts = new DataTable();
+            }
+
+            if (dtProducts.Rows.Count > 0)
+            {
+                txtTotalProducts.Text = dtProducts.Rows.Count.ToString();
+                btnCartItems.Text = dtProducts.Rows.Count.ToString();
+
+                dlCartProducts.DataSource = dtProducts;  // display products added into cart
+                dlCartProducts.DataBind();
+
+                UpdateTotalBill();
+
+                pnlMyCart.Visible = true;
+                pnlCheckOut.Visible = true;
+                pnlEmptyCart.Visible = false;
+                pnlCategories.Visible = false;
+                pnlProducts.Visible = false;
+                pnlOrderPlacedSuccessfully.Visible = false;
+
+            }
+            else
+            {
+                pnlEmptyCart.Visible = true;
+                pnlMyCart.Visible = false;
+                pnlCheckOut.Visible = true;
+                pnlCategories.Visible = false;
+                pnlProducts.Visible = false;
+                pnlOrderPlacedSuccessfully.Visible = false;
+
+                dlCartProducts.DataSource = null;
+                dlCartProducts.DataBind();
+
+                txtTotalProducts.Text = "0";
+                txtTotalPrice.Text = "0";
+                btnCartItems.Text = "0";
+            }
+        }
+
+        private void UpdateTotalBill()
+        {
+            long TotalPrice = 0;
+            long TotalProducts = 0;
+
+
+            foreach(DataListItem item in dlCartProducts.Items)
+            {
+                Label PriceLable = item.FindControl("lblPrice") as Label;
+                TextBox ProductQuantity = item.FindControl("txtProductQuantity") as TextBox;
+
+                long ProductPrice = Convert.ToInt64(PriceLable.Text) * Convert.ToInt64(ProductQuantity.Text);
+                TotalPrice = TotalPrice + ProductPrice;
+                TotalProducts = TotalProducts + Convert.ToInt32(ProductQuantity.Text);
+            }
+
+            txtTotalPrice.Text = Convert.ToString(TotalPrice);
+            txtTotalProducts.Text = Convert.ToString(TotalProducts);
         }
     }
 }

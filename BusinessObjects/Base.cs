@@ -12,13 +12,30 @@ namespace BusinessObjects
 
     public class ShoppingCart
     {
-        public string CategoryName;
         public int CategoryID;
+        public string CategoryName;
 
+        public int ProductId;
         public string ProductName;
         public string ProductImage;
         public string ProductPrice;
         public string ProductDescription;
+
+        public int CustomerId;
+        public string CustomerName;
+        public string CustomerEmailId;
+        public string CustomerAddress;
+        public string CustomerPhoneNo;
+
+        public string ProductList;
+        public string PaymentMethod;
+
         public int TotalProducts;
+        public int TotalPrice;
+        public int StockType;
+        public int Flag;
+
+        public string OrderStatus;
+        public string OrderPrice;
     }
 }

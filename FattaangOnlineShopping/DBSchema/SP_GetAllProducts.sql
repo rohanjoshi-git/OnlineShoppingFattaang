@@ -18,8 +18,8 @@ BEGIN
 				   P.ImageUrl,
 				   C.CategoryName,
 				   P.ProductQuantity,
-				   ISNULL(SUM(CP.TotalProduct), 0)	AS ProductSold,
-				   P.ProductQuantity - ISNULL(SUM(CP.TotalProduct), 0)	AS AvailableStock
+				   ISNULL(SUM(CP.TotalProducts), 0)	AS ProductSold,
+				   P.ProductQuantity - ISNULL(SUM(CP.TotalProducts), 0)	AS AvailableStock
 		   FROM Products P
 		    INNER JOIN Category C ON C.CategoryID = P.CategoryID
 			LEFT JOIN CustomerProducts CP on CP.ProductID = P.ProductID
@@ -48,8 +48,8 @@ BEGIN
 				   P.ImageUrl,
 				   C.CategoryName,
 				   P.ProductQuantity,
-				   ISNULL(SUM(CP.TotalProduct), 0)	AS ProductSold,
-				   P.ProductQuantity - ISNULL(SUM(CP.TotalProduct), 0)	AS AvailableStock
+				   ISNULL(SUM(CP.TotalProducts), 0)	AS ProductSold,
+				   P.ProductQuantity - ISNULL(SUM(CP.TotalProducts), 0)	AS AvailableStock
 		   FROM Products P
 		    INNER JOIN Category C ON C.CategoryID = P.CategoryID
 			LEFT JOIN CustomerProducts CP on CP.ProductID = P.ProductID

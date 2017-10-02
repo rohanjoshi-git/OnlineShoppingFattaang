@@ -85,7 +85,36 @@ namespace BusinessLogicLayer
             con.Close();
             return dt;
         }
+
+        public DataTable SaveCustomerDetails(ShoppingCart objShoppingCart)
+        {
+            DAL objDAL = new DAL();
+
+            SqlParameter[] parameters = new SqlParameter[7];
+            parameters[0] = objDAL.AddParameter("@CustomerName", objShoppingCart.CustomerName, SqlDbType.VarChar, 100);
+            parameters[1] = objDAL.AddParameter("@CustomerEmailId", objShoppingCart.CustomerEmailId, SqlDbType.VarChar, 100);
+            parameters[2] = objDAL.AddParameter("@CustomerPhoneNo", objShoppingCart.CustomerPhoneNo, SqlDbType.VarChar, 100);
+            parameters[3] = objDAL.AddParameter("@CustomerAddress", objShoppingCart.CustomerAddress, SqlDbType.VarChar, 100);
+            parameters[4] = objDAL.AddParameter("@TotalProducts", objShoppingCart.TotalProducts, SqlDbType.Int, 100);
+            parameters[5] = objDAL.AddParameter("@TotalPrice", objShoppingCart.TotalPrice, SqlDbType.Int, 100);
+            parameters[6] = objDAL.AddParameter("@PaymentMethod", objShoppingCart.PaymentMethod, SqlDbType.VarChar, 100);
+
+            DataTable dt = objDAL.ExecuteDTByProcedure("SP_SaveCustomerDetails", parameters);
+            return dt;
+        }
+
+        public void SaveCustomerProducts(ShoppingCart objShoppingCart)
+        {
+            DAL objDAL = new DAL();
+
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = objDAL.AddParameter("@CustomerId", objShoppingCart.CustomerId, SqlDbType.Int, 20);
+            parameters[1] = objDAL.AddParameter("@ProductId", objShoppingCart.ProductId, SqlDbType.Int, 20);
+            parameters[2] = objDAL.AddParameter("@TotalProducts", objShoppingCart.TotalProducts, SqlDbType.Int, 10);            
+
+            DataTable dt = objDAL.ExecuteDTByProcedure("SP_SaveCustomerProducts", parameters);
+        }
     }
-    
+
 
 }

@@ -211,7 +211,64 @@ namespace FattaangOnlineShopping
 
         protected void btnPlaceOrder_Click(object sender, EventArgs e)
         {
+            string productIds = string.Empty;
+            DataTable dt;
 
+            if (Session["MyCart"] != null)
+            {
+
+                BLL objBLL = new BLL();
+                dt = (DataTable)Session["MyCart"];
+
+                ShoppingCart objCustomerDetails = new ShoppingCart()
+                {
+                    CustomerName = txtCustomerName.Text,
+                    CustomerEmailId = txtCustomerEmailID.Text,
+                    CustomerAddress = txtCustomerAddress.Text,
+                    CustomerPhoneNo = txtCustomerPhoneNo.Text,
+                    TotalProducts = Convert.ToInt32(txtTotalProducts.Text),
+                    TotalPrice = Convert.ToInt32(txtTotalPrice.Text),
+                    ProductList = productIds,
+                    PaymentMethod = rblPaymentMethod.SelectedItem.Text
+                };
+
+                DataTable dtResult = objBLL.SaveCustomerDetails(objCustomerDetails);
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ShoppingCart objProduct = new ShoppingCart()
+                    {
+                        CustomerId = Convert.ToInt32(dtResult.Rows[0][0]),
+                        ProductId = Convert.ToInt32(dt.Rows[i]["ProductId"]),
+                        TotalProducts = Convert.ToInt32(dt.Rows[i]["ProductQuantity"]),
+                    };
+
+                    objBLL.SaveCustomerProducts(objProduct);
+
+                }
+
+                Session.Clear();
+                GetMyCart();
+
+                lblTransactionNo.Text = "Your Transaction Number : " + dtResult.Rows[0][0];
+
+                pnlOrderPlacedSuccessfully.Visible = true;
+                pnlEmptyCart.Visible = false;
+                pnlMyCart.Visible = false;
+                pnlCheckOut.Visible = false;
+                pnlCategories.Visible = false;
+                pnlProducts.Visible = false;
+
+                //SendOrderPlacedAlert(txtCustomerName.Text, txtCustomerEmailID.Text, Convert.ToString(dtResult.Rows[0][0]));
+
+                txtCustomerName.Text = string.Empty;
+                txtCustomerEmailID.Text = string.Empty;
+                txtCustomerAddress.Text = string.Empty;
+                txtCustomerPhoneNo.Text = string.Empty;
+                txtTotalPrice.Text = "0";
+                txtTotalProducts.Text = "0";
+
+            }
         }
 
         private void HighlightCartProducts()
@@ -244,7 +301,7 @@ namespace FattaangOnlineShopping
         private void GetMyCart()
         {
             DataTable dtProducts;
-            
+
             if (Session["MyCart"] != null) // Convert seession object to datatable
             {
                 dtProducts = (DataTable)Session["MyCart"];
@@ -296,7 +353,7 @@ namespace FattaangOnlineShopping
             long TotalProducts = 0;
 
 
-            foreach(DataListItem item in dlCartProducts.Items)
+            foreach (DataListItem item in dlCartProducts.Items)
             {
                 Label PriceLable = item.FindControl("lblPrice") as Label;
                 TextBox ProductQuantity = item.FindControl("txtProductQuantity") as TextBox;

@@ -1,6 +1,6 @@
 # OnlineShoppingFattaang
 E-commerce website </br> </br>
-
+Functionalities - </br>
 Admin login page </br>
 Admin master page for adding admin module and child pages</br>
 Add New Category and Add New Products page</br>
@@ -18,5 +18,8 @@ Get All Categories </br>
 Get All Products </br>
 Display products by Category </br>
 Add products to Shopping Cart </br>
+Highlight added products and bind products to Shopping Cart </br>
+Update product bill </br>
+Remove product/products from Shopping Cart </br>
 
 

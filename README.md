@@ -22,5 +22,6 @@ Highlight added products and bind products to Shopping Cart </br>
 Update product bill </br>
 Remove product/products from Shopping Cart </br>
 Place order with customer details and CheckOut process </br>
+Send E-mail confirmation to cutomers after products purchase </br>
 
 

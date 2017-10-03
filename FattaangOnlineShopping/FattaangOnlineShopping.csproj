@@ -92,6 +92,7 @@
     <Content Include="Images\shopping-cart-icon.png" />
     <Content Include="Images\Smile.jpg" />
     <Content Include="Images\banner.jpg" />
+    <Content Include="OrderTemplate.html" />
     <Content Include="packages.config" />
     <Content Include="Admin\AdminMaster.Master" />
     <None Include="Web.Debug.config">
@@ -136,6 +137,7 @@
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailEngine.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

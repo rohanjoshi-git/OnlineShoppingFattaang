@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using BusinessLogicLayer;
 using System.Data;
+using System.IO; // for StreamReader - to read OrderTemplate.thml
 
 namespace FattaangOnlineShopping
 {
@@ -259,7 +260,7 @@ namespace FattaangOnlineShopping
                 pnlCategories.Visible = false;
                 pnlProducts.Visible = false;
 
-                //SendOrderPlacedAlert(txtCustomerName.Text, txtCustomerEmailID.Text, Convert.ToString(dtResult.Rows[0][0]));
+                SendOrderPlacedAlert(txtCustomerName.Text, txtCustomerEmailID.Text, Convert.ToString(dtResult.Rows[0][0]));
 
                 txtCustomerName.Text = string.Empty;
                 txtCustomerEmailID.Text = string.Empty;
@@ -365,6 +366,28 @@ namespace FattaangOnlineShopping
 
             txtTotalPrice.Text = Convert.ToString(TotalPrice);
             txtTotalProducts.Text = Convert.ToString(TotalProducts);
+        }
+
+        private void SendOrderPlacedAlert(string CustomerName, string CustomeremailId, string TransactionNo)
+        {
+            string body = this.PopulateOrderEmailBody(CustomerName, TransactionNo);
+
+            EmailEngine.SendEmail(CustomeremailId, "Fattaang - Your Order Details", body); // SendEmail - static method - can't be called by an instance
+        }
+
+        private string PopulateOrderEmailBody(string CustomerName, string TransactionNo)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/OrderTemplate.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            body = body.Replace("{CustomerName}", CustomerName);
+            body = body.Replace("{OrderNo}", TransactionNo);
+            body = body.Replace("{TransactionURL}", "http://www.fattaang.com/TrackYourOrder.aspx?Id=" + TransactionNo);
+
+            return body;
         }
     }
 }

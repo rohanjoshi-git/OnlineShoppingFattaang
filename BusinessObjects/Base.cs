@@ -38,4 +38,19 @@ namespace BusinessObjects
         public string OrderStatus;
         public string OrderPrice;
     }
+
+    // MailMessage already present in System.Net.Mail namespace
+    //public class EmailMessage : IDisposable
+    //{
+    //    public string From;
+    //    public string Subject;
+    //    public string Body;
+    //    public bool IBodyHTML;
+    //    List<String> To = new List<String>();
+
+    //    public void Dispose()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }

@@ -68,6 +68,15 @@
   <ItemGroup>
     <Content Include="Admin\AddEditCategory.aspx" />
     <Content Include="Admin\AddNewProducts.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="DBSchema\SP_AddNewCategory.sql" />
+    <Content Include="DBSchema\SP_AddNewProduct.sql" />
+    <Content Include="DBSchema\SP_GetAllCategories.sql" />
+    <Content Include="DBSchema\SP_GetAllProducts.sql" />
+    <Content Include="DBSchema\SP_SaveCustomerDetails.sql" />
+    <Content Include="DBSchema\SP_SaveCustomerProducts.sql" />
+    <Content Include="DBSchema\SQLQuery1.sql" />
+    <Content Include="DBSchema\SQLQuery2.sql" />
     <Content Include="Home.aspx" />
     <Content Include="Images\acc2.jpg" />
     <Content Include="Images\CAccessories.jpg" />
@@ -83,6 +92,7 @@
     <Content Include="Images\shopping-cart-icon.png" />
     <Content Include="Images\Smile.jpg" />
     <Content Include="Images\banner.jpg" />
+    <Content Include="OrderTemplate.html" />
     <Content Include="packages.config" />
     <Content Include="Admin\AdminMaster.Master" />
     <None Include="Web.Debug.config">
@@ -127,6 +137,7 @@
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailEngine.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

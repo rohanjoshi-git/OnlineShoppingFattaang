@@ -5,7 +5,8 @@ Name VARCHAR(300),
 Description VARCHAR(1000),
 Price VARCHAR(50),
 ImageUrl VARCHAR(500),
-CategoryID INT
+CategoryID INT,
+ProductQuantity INT
 )
 
 CREATE TABLE Category
@@ -17,9 +18,9 @@ CategoryName VARCHAR(500)
 CREATE TABLE CustomerProducts
 (
 --Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-CategoryID INT, 
+CustomerId INT, 
 ProductID INT,
-TotalProduct INT
+TotalProducts INT
 )
 
 CREATE TABLE CustomerDetails

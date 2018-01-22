@@ -12,6 +12,13 @@ AS
 		BEGIN TRY
 
 			insert into Products
+			(Name,
+			Description,
+			Price,
+			ImageUrl,
+			CategoryID,
+			ProductQuantity
+			)
 			values 
 			(
 			@ProductName,

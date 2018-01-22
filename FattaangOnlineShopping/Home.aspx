@@ -230,7 +230,7 @@
                                                                                     &nbsp;
                                                                     x
                                                                     &nbsp;
-                                                                    <asp:TextBox ID="txtProductQuantity" runat="server" Width="15px" Height="10px"
+                                                                    <asp:TextBox ID="txtProductQuantity" runat="server" Width="20px" Height="15px"
                                                                         OnTextChanged="txtProductQuantity_TextChanged" AutoPostBack="true"
                                                                         Text='<%# Eval("ProductQuantity") %>'></asp:TextBox>
                                                                                     <%--MaxLength="1"--%>

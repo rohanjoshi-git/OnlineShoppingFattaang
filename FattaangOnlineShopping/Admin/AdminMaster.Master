@@ -38,7 +38,8 @@
 
                             <%-- website Name and tagline--%>
                             <td>
-                                <asp:LinkButton ID="lblLogo" runat="server" Text="Fattaang" Font-Names="Eras Demi ITC" Font-Size="20pt" ForeColor="#6600CC">
+                                <asp:LinkButton ID="lblLogo" runat="server" Text="Fattaang" Font-Names="Eras Demi ITC" Font-Size="20pt" ForeColor="#6600CC"
+                                    PostBackUrl="~/Home.aspx">
                                 </asp:LinkButton>
                                 <br />
                                 For those who love Jeans...!!!
